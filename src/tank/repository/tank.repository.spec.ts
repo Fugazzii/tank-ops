@@ -13,6 +13,7 @@ describe('TankRepository', () => {
 
   const mockTankRepository = {
     findAll: jest.fn().mockResolvedValue(mockTankResponse),
+    search: jest.fn().mockResolvedValue(mockTankResponse), // Mock the search method
   };
 
   beforeEach(async () => {
@@ -44,6 +45,22 @@ describe('TankRepository', () => {
       await tankRepository.findAll();
 
       expect(mockTankRepository.findAll).toHaveBeenCalled();
+    });
+  });
+
+  describe('search', () => {
+    it('should return an array of tank responses based on the query', async () => {
+      const query = 'Tank 1';
+      const result = await tankRepository.search(query);
+
+      expect(result).toEqual(mockTankResponse);
+    });
+
+    it('should call search method of the repository with the correct parameters', async () => {
+      const query = 'Tank 1';
+      await tankRepository.search(query);
+
+      expect(mockTankRepository.search).toHaveBeenCalledWith(query);
     });
   });
 });
