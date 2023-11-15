@@ -39,7 +39,8 @@ describe("TankController (e2e)", () => {
     const createTankDto: CreateTankDto = {
       name: "New Tank",
       calibre: 90,
-      type: TankType.MEDIUM
+      type: TankType.MEDIUM, 
+      weakSpots: 4
     };
 
     const response = await request(app.getHttpServer())
