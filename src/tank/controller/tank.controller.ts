@@ -32,7 +32,8 @@ export class TankController {
   @ApiResponse({ status: 200, description: "Successful operation", type: Tank, isArray: true })
   @HttpCode(HttpStatus.OK)
   @Get("/search")
-  public search(@Query("search") query: string): Promise<Tank[]> {
-    return this.tankService.search(query);
-  }
+  public search(@Query("index") index: string, @Query("name") name: string): Promise<Tank[]> {
+    return this.tankService.search(index, name);
+}
+
 }

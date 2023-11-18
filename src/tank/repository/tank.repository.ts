@@ -30,13 +30,13 @@ export class TankRepository {
         await this.repository.create(createTankDto);
     }
 
-    public async search(query: string): Promise<Tank[]> {
+    public async search(index: string, name: string): Promise<Tank[]> {
         const body = await this.elasticsearchClient.search({
-            index: "your_index",
+            index,
             body: {
                 query: {
                     match: {
-                        name: query
+                        name
                     }
                 }
             }

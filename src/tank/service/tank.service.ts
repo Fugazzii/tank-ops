@@ -18,7 +18,7 @@ export class TankService {
     return this.tankRepository.create(createTankDto);
   }
 
-  public search(query: string): Promise<Tank[]> {
-    return this.tankRepository.search(query);
+  public search(index: string, name: string): Promise<Tank[]> {
+    return this.tankRepository.search(index, name);
   }
 }
