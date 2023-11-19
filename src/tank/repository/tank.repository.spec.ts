@@ -50,17 +50,19 @@ describe('TankRepository', () => {
 
   describe('search', () => {
     it('should return an array of tank responses based on the query', async () => {
-      const query = 'Tank 1';
-      const result = await tankRepository.search(query);
+      const index = "your_index";
+      const name = "Panzer";
+      const result = await tankRepository.search(index, name);
 
       expect(result).toEqual(mockTankResponse);
     });
 
     it('should call search method of the repository with the correct parameters', async () => {
-      const query = 'Tank 1';
-      await tankRepository.search(query);
+      const index = "your_index";
+      const name = "Panzer";
+      await tankRepository.search(index, name);
 
-      expect(mockTankRepository.search).toHaveBeenCalledWith(query);
+      expect(mockTankRepository.search).toHaveBeenCalledWith(index, name);
     });
   });
 });
