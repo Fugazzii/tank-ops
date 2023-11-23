@@ -3,6 +3,7 @@ import { TankModule } from './tank/tank.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ElasticsearchModule } from '@nestjs/elasticsearch';
+import { HealthCheckModule } from './health-check/health-check.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ElasticsearchModule } from '@nestjs/elasticsearch';
       }),
       inject: [ConfigService],
     }),
+    HealthCheckModule,
   ]
 })
 export class AppModule {}
