@@ -2,13 +2,25 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "vpc" {
-  source                = "./vpc"
-  vpc_cidr_block        = "10.1.0.0/16"
-  public_subnet_cidr    = "10.1.1.0/24"
-  private_subnet_cidr   = "10.1.2.0/24"
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"]
 }
 
-module "elastic-ip" {
-  source = "./elastic-ip"
+module "ec2_instance" {
+  source        = "./ec2"
+  instance_ami  = data.aws_ami.ubuntu
+  instance_type = "t2.micro"
+  # key_name      = "your-key-pair"
 }
