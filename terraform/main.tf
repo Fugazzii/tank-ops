@@ -3,8 +3,12 @@ provider "aws" {
 }
 
 module "vpc" {
-  source               = "./vpc"
-  vpc_cidr_block       = "10.1.0.0/16"
+  source                = "./vpc"
+  vpc_cidr_block        = "10.1.0.0/16"
   public_subnet_cidr    = "10.1.1.0/24"
   private_subnet_cidr   = "10.1.2.0/24"
+}
+
+module "elastic-ip" {
+  source = "./elastic-ip"
 }
